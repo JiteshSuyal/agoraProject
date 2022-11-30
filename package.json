@@ -1,0 +1,11 @@
+{
+  "name": "agoraproject",
+  "version": "1.0.0",
+  "description": "agora demo project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jitesh & deepak",
+  "license": "ISC"
+}
