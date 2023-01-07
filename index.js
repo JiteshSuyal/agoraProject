@@ -77,6 +77,31 @@ app.get("/rtc", (req, res) => {
   console.log('heloo')
 });
 
+app.delete("/rt", (req, res) => {
+  console.log(req.body.isPublisher, RtcRole.PUBLISHER, RtcRole.SUBSCRIBER);
+  const appID = " 6e46211aa1ed44f2b377fdsfsdfa";
+  const appCertificate = "6e46211aa1ed44f2b3dfsfsdfsdfsd";
+  const expirationTimeInSeconds = 3600;
+  const uid = Math.floor(Math.random() * 100000);
+  const role =
+    req.body.isPublisher === "1" ? RtcRole.PUBLISHER : RtcRole.SUBSCRIBER;
+  const channel = req.body.channel;
+  const currentTimestamp = Math.floor(Date.now() / 1000);
+  const expirationTimestamp = currentTimestamp + expirationTimeInSeconds;
+  console.log(role);
+  const token = RtcTokenBuilder.buildTokenWithUid(
+    appID,
+    appCertificate,
+    channel,
+    uid,
+    role,
+    expirationTimestamp
+  );
+  console.log('hskdlfhsakf')
+  res.send({ uid, token });
+  
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port, () =>
   console.log(`Agora Auth Token Server listening at Port ${port}`)
