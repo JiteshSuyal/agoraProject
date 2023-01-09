@@ -97,6 +97,14 @@ app.delete("/rt", (req, res) => {
     role,
     expirationTimestamp
   );
+  const tokendddd = RtcTokenBuilder.buildTokenWithUid(
+    appID,
+    appCertificate,
+    channel,
+    uid,
+    role,
+    expirationTimestamp
+  );
   })
   
 const port = process.env.PORT || 3000;
