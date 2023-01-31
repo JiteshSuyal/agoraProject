@@ -53,6 +53,29 @@ app.post("/rtmtoken", (req, res) => {
 });
 
 //just for help
+app.get("/rtc", (req, res) => {
+  console.log(req.body.isPublisher, RtcRole.PUBLISHER, RtcRole.SUBSCRIBER);
+  const appID = " 6e46211aa1ed44f2b377";
+  const appCertificate = "6e46211aa1ed44f2b3";
+  const expirationTimeInSeconds = 3600;
+  const uid = Math.floor(Math.random() * 100000);
+  const role =
+    req.body.isPublisher === "1" ? RtcRole.PUBLISHER : RtcRole.SUBSCRIBER;
+  const channel = req.body.channel;
+  const currentTimestamp = Math.floor(Date.now() / 1000);
+  const expirationTimestamp = currentTimestamp + expirationTimeInSeconds;
+  console.log(role);
+  const token = RtcTokenBuilder.buildTokenWithUid(
+    appID,
+    appCertificate,
+    channel,
+    uid,
+    role,
+    expirationTimestamp
+  );
+  res.send({ uid, token });
+  console.log('heloo')
+});
 
   
 const port = process.env.PORT || 3000;
